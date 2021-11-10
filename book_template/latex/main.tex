@@ -1,0 +1,110 @@
+\documentclass[11pt, oneside]{book} 
+% note that oneside eliminates blank pages before and after table of contents
+
+%%%%%%%%%%%%% List of packages %%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc} % fonts
+\usepackage{amsmath, amsfonts, amssymb}  % math equations and fonts
+\usepackage{amsthm}   % sets math theorems
+\usepackage{graphicx} % 
+\usepackage[textheight=8in, textwidth=6in, letterpaper]{geometry} % useful for page settings
+\usepackage{xcolor}   % customize colors 
+\usepackage{booktabs} % useful for table formatting
+\usepackage{fancyhdr} % customizes headers and footers
+\usepackage{hyperref} % includes hyperlinks for equation references, figure references and others
+\usepackage{subfiles}  % creates chapters that can be compiled independently 
+\usepackage{fancyhdr}  % adds nice lines at the header and footer
+\usepackage{lipsum}    % fills space with Latin paragraphs
+\usepackage{newpxtext, newpxmath} % Palantino fonts
+\usepackage{caption, subcaption}   % used for captions for figs and tables
+\usepackage{floatrow}  % used for adding notes under figs and tables
+\usepackage[section]{placeins} % ensures that figures stay within the sections they are assigned to
+
+%%%%%%%%%%%%% Bibliography settings %%%%%%%%%
+\usepackage[authordate,
+            backend=biber,natbib,
+            sorting=nyt,
+            hypertitle=true
+            ]{biblatex-chicago}
+\addbibresource{references.bib} 
+
+
+%%%%%%%%%%%%% Set new commands %%%%%%%%%%%%%%
+\renewcommand{\chaptername}{Cool Chapter} % redefines the word "Chapter" to "Cool Chapter"
+
+\pagestyle{fancy} 
+\fancyhead[L, C]{}
+\fancyhead[R]{Lecture \thechapter} % positions header
+\fancyfoot[L, R]{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%%% Captions
+\DeclareCaptionFont{ftfont}{\scriptsize\raggedright} % settings for footnotes
+\captionsetup[floatfoot]
+    {%
+    footfont=ftfont,%
+    width = 0.9\linewidth
+    }%  
+\captionsetup{%
+    font=sc,
+    textfont=normalfont,
+    labelfont=bf,
+    labelsep=colon,
+    justification=justified,
+    position=top
+    }%
+\captionsetup[sub]{
+    font+=smaller,
+    justification=raggedright,
+    position=top}
+\floatsetup[figure]% Figures
+    {%
+    capposition=top,%
+    }%  
+\floatsetup[table]% Tables
+    {%
+    capposition=top,%
+    }%  
+\hypersetup{
+    colorlinks=true,%
+    linkcolor=red,%
+    citecolor=blue,%
+    % pagebackref=true %Adds ‘backlink’ text to the end of each item in the bibliography, as a list of page numbers.
+}
+
+%%% Legend for labeling
+% F_* -> Figures
+% T_* -> Tables
+% S_* -> Sections
+% C_* -> Chapters
+% E_* -> Exercises
+
+
+%%%%%%%%%%%%% Document begins %%%%%%%%%%%%%%%
+\begin{document}
+
+\title{Insipiring Title}
+\author{Author}
+\date{\today}
+\maketitle
+
+%% Table of contents 
+\tableofcontents
+
+%% Abstract, Acknowledgements located here 
+\frontmatter
+
+%% Main body of the document
+\mainmatter
+
+\subfile{chapter0.tex}
+
+\subfile{chapter1.tex}
+
+\subfile{appendix.tex}
+
+%% References and Appendix 
+\backmatter
+\printbibliography % Prints bibliography
+
+\end{document}
